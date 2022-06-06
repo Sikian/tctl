@@ -31,30 +31,15 @@ import (
 
 // Flags used to specify cli command line arguments
 var (
-	FlagUsername                      = "username"
-	FlagPassword                      = "password"
-	FlagKeyspace                      = "keyspace"
 	FlagAddress                       = "address"
 	FlagAuth                          = "auth"
-	FlagHistoryAddress                = "history-address"
-	FlagDBEngine                      = "db-engine"
-	FlagDBAddress                     = "db-address"
-	FlagDBPort                        = "db-port"
 	FlagNamespaceID                   = "namespace-id"
 	FlagNamespace                     = "namespace"
 	FlagNamespaceAlias                = []string{"n"}
-	FlagShardID                       = "shard-id"
 	FlagWorkflowID                    = "workflow-id"
 	FlagWorkflowIDAlias               = []string{"wid"}
 	FlagRunID                         = "run-id"
 	FlagRunIDAlias                    = []string{"rid"}
-	FlagTreeID                        = "tree-id"
-	FlagBranchID                      = "branch-id"
-	FlagNumberOfShards                = "number-of-shards"
-	FlagTargetCluster                 = "target-cluster"
-	FlagMinEventID                    = "min-event-id"
-	FlagMaxEventID                    = "max-event-id"
-	FlagStartEventVersion             = "start-event-version"
 	FlagTaskQueue                     = "task-queue"
 	FlagTaskQueueAlias                = []string{"tq"}
 	FlagTaskQueueType                 = "task-queue-type"
@@ -75,7 +60,6 @@ var (
 	FlagInput                         = "input"
 	FlagInputAlias                    = []string{"i"}
 	FlagInputFile                     = "input-file"
-	FlagInputFileAlias                = []string{"if"}
 	FlagExcludeFile                   = "exclude-file"
 	FlagInputSeparator                = "input-separator"
 	FlagParallelism                   = "input-parallelism"
@@ -83,90 +67,42 @@ var (
 	FlagSkipBaseIsNotCurrent          = "skip-base-is-not-current"
 	FlagDryRun                        = "dry-run"
 	FlagNonDeterministic              = "non-deterministic"
-	FlagHostFile                      = "host-file"
-	FlagCluster                       = "cluster"
-	FlagInputCluster                  = "input-cluster"
-	FlagTopic                         = "topic"
-	FlagGroup                         = "group"
 	FlagResult                        = "result"
 	FlagIdentity                      = "identity"
 	FlagDetail                        = "detail"
 	FlagReason                        = "reason"
 	FlagReasonAlias                   = []string{"r"}
-	FlagOpen                          = "open"
 	FlagPageSize                      = "pagesize"
-	FlagPageSizeAlias                 = []string{"ps"}
-	FlagFrom                          = "from"
-	FlagTo                            = "to"
-	FlagPrintEventVersion             = "print-event-version"
-	FlagPrintEventVersionAlias        = []string{"pev"}
-	FlagPrintFullyDetail              = "print-full"
-	FlagPrintFullyDetailAlias         = []string{"pf"}
-	FlagPrintRawTime                  = "print-raw-time"
-	FlagPrintRawTimeAlias             = []string{"prt"}
 	FlagPrintRaw                      = "raw"
-	FlagPrintDateTime                 = "print-datetime"
-	FlagPrintDateTimeAlias            = []string{"pdt"}
-	FlagPrintMemo                     = "print-memo"
-	FlagPrintMemoAlias                = []string{"pme"}
-	FlagPrintSearchAttr               = "print-search-attr"
-	FlagPrintSearchAttrAlias          = []string{"psa"}
-	FlagPrintJSON                     = "print-json"
-	FlagPrintJSONAlias                = []string{"pjson"}
 	FlagDescription                   = "description"
-	FlagDescriptionAlias              = []string{"desc"}
 	FlagOwnerEmail                    = "owner-email"
-	FlagOwnerEmailAlias               = []string{"oe"}
 	FlagRetention                     = "retention"
-	FlagRetentionAlias                = []string{"rd"}
+	FlagRetentionAlias                = []string{"r"}
 	FlagHistoryArchivalState          = "history-archival-state"
 	FlagHistoryArchivalStateAlias     = []string{"has"}
 	FlagHistoryArchivalURI            = "history-uri"
-	FlagHistoryArchivalURIAlias       = []string{"huri"}
 	FlagHeartbeatedWithin             = "heartbeated-within"
 	FlagVisibilityArchivalState       = "visibility-archival-state"
 	FlagVisibilityArchivalStateAlias  = []string{"vas"}
 	FlagVisibilityArchivalURI         = "visibility-uri"
-	FlagVisibilityArchivalURIAlias    = []string{"vuri"}
 	FlagName                          = "name"
 	FlagNameAlias                     = []string{"n"}
 	FlagOutputFilename                = "output-filename"
-	FlagOutputFilenameAlias           = []string{"of"}
 	FlagOutputFormat                  = "output"
 	FlagQueryType                     = "query-type"
 	FlagQueryTypeAlias                = []string{"qt"}
 	FlagQueryRejectCondition          = "query-reject-condition"
-	FlagQueryRejectConditionAlias     = []string{"qrc"}
-	FlagShowDetail                    = "show-detail"
-	FlagShowDetailAlias               = []string{"sd"}
 	FlagActiveClusterName             = "active-cluster"
-	FlagActiveClusterNameAlias        = []string{"ac"}
 	FlagClusters                      = "clusters"
-	FlagClustersAlias                 = []string{"cl"}
 	FlagClusterMembershipRole         = "role"
 	FlagIsGlobalNamespace             = "global-namespace"
-	FlagIsGlobalNamespaceAlias        = []string{"gn"}
 	FlagNamespaceData                 = "namespace-data"
-	FlagNamespaceDataAlias            = []string{"dmd"}
 	FlagPromoteNamespace              = "promote-namespace"
 	FlagEventID                       = "event-id"
 	FlagEventIDAlias                  = []string{"eid"}
 	FlagActivityID                    = "activity-id"
 	FlagActivityIDAlias               = []string{"aid"}
 	FlagMaxFieldLength                = "max-field-length"
-	FlagMaxFieldLengthAlias           = []string{"maxl"}
-	FlagSecurityToken                 = "security-token"
-	FlagSecurityTokenAlias            = []string{"st"}
-	FlagSkipErrorMode                 = "skip-errors"
-	FlagSkipErrorModeAlias            = []string{"serr"}
-	FlagHeadersMode                   = "headers"
-	FlagHeadersModeAlias              = []string{"he"}
-	FlagMessageType                   = "message-type"
-	FlagMessageTypeAlias              = []string{"mt"}
-	FlagURL                           = "url"
-	FlagIndex                         = "index"
-	FlagBatchSize                     = "batch-size"
-	FlagBatchSizeAlias                = []string{"bs"}
 	FlagMemoKey                       = "memo-key"
 	FlagMemo                          = "memo"
 	FlagMemoFile                      = "memo-file"
@@ -190,52 +126,24 @@ var (
 	FlagSignalNameAlias               = []string{"sn"}
 	FlagTaskID                        = "task-id"
 	FlagTaskType                      = "task-type"
-	FlagMinReadLevel                  = "min-read-level"
-	FlagMaxReadLevel                  = "max-read-level"
-	FlagTaskVisibilityTimestamp       = "task-timestamp"
-	FlagMinVisibilityTimestamp        = "min-visibility-ts"
-	FlagMaxVisibilityTimestamp        = "max-visibility-ts"
-	FlagStartingRPS                   = "starting-rps"
 	FlagRPS                           = "rps"
 	FlagJobID                         = "job-id"
 	FlagJobIDAlias                    = []string{"jid"}
 	FlagYes                           = "yes"
-	FlagServiceConfigDir              = "service-config-dir"
-	FlagServiceConfigDirAlias         = []string{"scd"}
-	FlagServiceEnv                    = "service-env"
-	FlagServiceEnvAlias               = []string{"se"}
-	FlagServiceZone                   = "service-zone"
-	FlagServiceZoneAlias              = []string{"sz"}
 	FlagEnableTLS                     = "tls"
 	FlagTLSCertPath                   = "tls-cert-path"
 	FlagTLSKeyPath                    = "tls-key-path"
 	FlagTLSCaPath                     = "tls-ca-path"
 	FlagTLSDisableHostVerification    = "tls-disable-host-verification"
 	FlagTLSServerName                 = "tls-server-name"
-	FlagLastMessageID                 = "last-message-id"
 	FlagConcurrency                   = "concurrency"
-	FlagReportRate                    = "report-rate"
-	FlagLowerShardBound               = "lower-shard-bound"
-	FlagUpperShardBound               = "upper-shard-bound"
-	FlagInputDirectory                = "input-directory"
-	FlagAutoConfirm                   = "auto-confirm"
 	FlagDataConverterPlugin           = "data-converter-plugin"
 	FlagCodecAuth                     = "codec-auth"
 	FlagCodecEndpoint                 = "codec-endpoint"
 	FlagWebURL                        = "web-ui-url"
 	FlagHeadersProviderPlugin         = "headers-provider-plugin"
-	FlagHeadersProviderPluginOptions  = "headers-provider-plugin-options"
-	FlagVersion                       = "version"
 	FlagPort                          = "port"
-	FlagEnableConnection              = "enable-connection"
 	FlagFollowAlias                   = []string{"f"}
-
-	FlagProtoType  = "type"
-	FlagHexData    = "hex-data"
-	FlagHexFile    = "hex-file"
-	FlagBinaryFile = "binary-file"
-	FlagBase64Data = "base64-data"
-	FlagBase64File = "base64-file"
 )
 
 var flagsForExecution = []cli.Flag{
@@ -254,15 +162,13 @@ var flagsForExecution = []cli.Flag{
 
 var flagsForShowWorkflow = []cli.Flag{
 	&cli.StringFlag{
-		Name:    FlagOutputFilename,
-		Aliases: FlagOutputFilenameAlias,
-		Usage:   "Serialize history event to a file",
+		Name:  FlagOutputFilename,
+		Usage: "Serialize history event to a file",
 	},
 	&cli.IntFlag{
-		Name:    FlagMaxFieldLength,
-		Aliases: FlagMaxFieldLengthAlias,
-		Usage:   "Maximum length for each attribute field",
-		Value:   defaultMaxFieldLength,
+		Name:  FlagMaxFieldLength,
+		Usage: "Maximum length for each attribute field",
+		Value: defaultMaxFieldLength,
 	},
 	&cli.BoolFlag{
 		Name:  FlagResetPointsOnly,
@@ -332,16 +238,14 @@ var flagsForRunWorkflow = []cli.Flag{
 		Usage:   "Optional input for the Workflow in JSON format. Pass \"null\" for null values",
 	},
 	&cli.StringFlag{
-		Name:    FlagInputFile,
-		Aliases: FlagInputFileAlias,
+		Name: FlagInputFile,
 		Usage: "Pass an optional input for the Workflow from a JSON file." +
 			" If there are multiple JSON files, concatenate them and separate by space or newline." +
 			" Input from the command line overwrites input from the file",
 	},
 	&cli.IntFlag{
-		Name:    FlagMaxFieldLength,
-		Aliases: FlagMaxFieldLengthAlias,
-		Usage:   "Maximum length for each attribute field",
+		Name:  FlagMaxFieldLength,
+		Usage: "Maximum length for each attribute field",
 	},
 	&cli.StringSliceFlag{
 		Name:  FlagMemoKey,
@@ -412,14 +316,12 @@ var flagsForStackTraceQuery = append(flagsForExecution, []cli.Flag{
 		Usage:   "Optional input for the query, in JSON format. If there are multiple parameters, concatenate them and separate by space",
 	},
 	&cli.StringFlag{
-		Name:    FlagInputFile,
-		Aliases: FlagInputFileAlias,
+		Name: FlagInputFile,
 		Usage: "Optional input for the query from JSON file. If there are multiple JSON, concatenate them and separate by space or newline. " +
 			"Input from file will be overwrite by input from command line",
 	},
 	&cli.StringFlag{
-		Name:    FlagQueryRejectCondition,
-		Aliases: FlagQueryRejectConditionAlias,
-		Usage:   "Optional flag to reject queries based on Workflow state. Valid values are \"not_open\" and \"not_completed_cleanly\"",
+		Name:  FlagQueryRejectCondition,
+		Usage: "Optional flag to reject queries based on Workflow state. Valid values are \"not_open\" and \"not_completed_cleanly\"",
 	},
 }...)

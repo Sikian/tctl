@@ -54,10 +54,9 @@ func newBatchCommands() []*cli.Command {
 			Usage: "List batch operation jobs",
 			Flags: []cli.Flag{
 				&cli.IntFlag{
-					Name:    FlagPageSize,
-					Aliases: FlagPageSizeAlias,
-					Value:   30,
-					Usage:   "Result page size",
+					Name:  FlagPageSize,
+					Value: 30,
+					Usage: "Result page size",
 				},
 			},
 			Action: func(c *cli.Context) error {
